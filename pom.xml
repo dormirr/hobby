@@ -65,6 +65,21 @@
         <url>git@github.com:dormirr/hobby.git</url>
     </scm>
 
+    <repositories>
+        <!-- 可以从 sonatype 下载 snapshot 版本的依赖 -->
+        <repository>
+            <id>sonatype-snapshots</id>
+            <name>sonatype-snapshots</name>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <build>
         <plugins>
             <!-- 编译配置 -->
