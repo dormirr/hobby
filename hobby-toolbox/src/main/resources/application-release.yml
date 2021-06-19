@@ -2,7 +2,7 @@ spring:
   r2dbc:
     url: r2dbc:postgresql://43.128.2.37:5432
     name: hobby
-    username:
+    username: hobby
     password:
     pool:
       enabled: true

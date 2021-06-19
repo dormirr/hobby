@@ -8,14 +8,14 @@ logging:
 
 spring:
   r2dbc:
-    url: r2dbc:postgresql://43.128.2.37:5432
+    url: r2dbc:postgresql://localhost:5432
     name: hobby
-    username: 123
+    username: hobby
     password: hobby
     pool:
       enabled: true
-      initial-size: 20
-      max-size: 50
-      max-idle-time: 10m
+      initial-size: 5
+      max-size: 11
+      max-idle-time: 1m
       validation-depth: local
       validation-query: select 1
