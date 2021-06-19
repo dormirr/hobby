@@ -28,7 +28,6 @@
         <encoding>UTF-8</encoding>
         <gpg.version>3.0.1</gpg.version>
         <staging.version>1.6.8</staging.version>
-        <java.home>C:\Program Files\AdoptOpenJDK\jdk-11.0.11.9-hotspot</java.home>
         <gpg.keyname>ossrh</gpg.keyname>
     </properties>
 
@@ -67,6 +66,13 @@
     </scm>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
         <plugins>
             <!-- 编译配置 -->
             <plugin>
@@ -78,29 +84,27 @@
                     <encoding>${encoding}</encoding>
                 </configuration>
             </plugin>
-
-            <!-- Javadoc -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
     <profiles>
         <profile>
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+            </properties>
+            <!-- dev 设置为默认环境 -->
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+        <profile>
             <id>release</id>
+            <properties>
+                <env>release</env>
+            </properties>
+
             <distributionManagement>
                 <snapshotRepository>
                     <id>ossrh</id>
@@ -128,6 +132,20 @@
                         </executions>
                     </plugin>
 
+                    <!-- Javadoc -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+
                     <!-- Gpg Signature -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -147,6 +165,8 @@
                             </execution>
                         </executions>
                     </plugin>
+
+                    <!-- sonatype -->
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>

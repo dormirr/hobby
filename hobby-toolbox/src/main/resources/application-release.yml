@@ -1,0 +1,13 @@
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://43.128.2.37:5432
+    name: hobby
+    username:
+    password:
+    pool:
+      enabled: true
+      initial-size: 20
+      max-size: 50
+      max-idle-time: 10m
+      validation-depth: local
+      validation-query: select 1
