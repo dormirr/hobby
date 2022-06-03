@@ -7,7 +7,6 @@
         <groupId>cn.zhangtianci</groupId>
         <artifactId>hobby</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <artifactId>hobby-common</artifactId>
