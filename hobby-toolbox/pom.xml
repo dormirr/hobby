@@ -16,10 +16,35 @@
     <description>Hobby Toolbox, provide open source tools services for Hobby.</description>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
+        <hobby-common.version>0.0.1-SNAPSHOT</hobby-common.version>
+        <r2dbc-postgresql.version>0.9.1.RELEASE</r2dbc-postgresql.version>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <!-- 公共模块 -->
+            <dependency>
+                <groupId>cn.zhangtianci</groupId>
+                <artifactId>hobby-common</artifactId>
+                <version>${hobby-common.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>r2dbc-postgresql</artifactId>
+                <version>${r2dbc-postgresql.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
+        <!-- 公共模块 -->
+        <dependency>
+            <groupId>cn.zhangtianci</groupId>
+            <artifactId>hobby-common</artifactId>
+        </dependency>
+
         <!-- 响应式 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -28,13 +53,13 @@
 
         <!-- 数据库 -->
         <dependency>
-            <groupId>io.r2dbc</groupId>
-            <artifactId>r2dbc-postgresql</artifactId>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
+            <artifactId>r2dbc-postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -42,15 +67,7 @@
             <artifactId>spring-boot-starter-data-r2dbc</artifactId>
         </dependency>
 
-        <!-- SpringBoot 开发快捷工具 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-
-        <!-- 支持 .yml 文件 -->
+        <!-- 支持配置文件提示 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -139,6 +156,9 @@
             <id>spring-snapshots</id>
             <name>Spring Snapshots</name>
             <url>https://repo.spring.io/snapshot</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
         </pluginRepository>
     </pluginRepositories>
 </project>
